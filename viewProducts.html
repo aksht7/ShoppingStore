@@ -1,0 +1,42 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+         body
+        {
+            font-family: 'Exo 2', sans-serif;
+        }
+        .main{
+            margin-left: 50px;
+        }
+        a
+        {
+            margin-left:400px; 
+            color:black;
+            font-family: 'Exo 2', sans-serif;
+            text-decoration: none;
+            position: relative;
+        }
+        a:hover{
+            transition: 0.5s;
+            color:#f00;
+        }
+        h3
+        {
+            margin-top: 30px;
+            color: #262626;
+        }
+    </style>
+    </head>
+    <body onload="getStoredProducts()">
+        <div class="main">
+        <div><h3>Products : 
+            <a href="cart.html" class="fa fa-shopping-cart" style="font-size:22px;"> My Cart</a>
+            </h3>
+            </div>
+        <div id="divListOfProducts">
+        </div>
+        </div>
+    </body>
+    <script src="viewProducts.js" type="text/javascript"></script>
+</html>
