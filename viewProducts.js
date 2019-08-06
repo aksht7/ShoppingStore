@@ -165,7 +165,7 @@ function addProductToDOM(productObj)
         });
         divRow.appendChild(quantity);
         divRow.appendChild(addToCart);
-        divRow.setAttribute("style","width:350px;padding:10px 25px;margin-top:20px;border:2px solid #555555;");
+        divRow.setAttribute("style","float:left;margin-left:25px;width:340px;padding:10px 20px;margin-top:20px;border:2px solid #555555;");
         divListOfProducts.appendChild(divRow);
         console.log(divRow.id);
         console.log(productsArray);
