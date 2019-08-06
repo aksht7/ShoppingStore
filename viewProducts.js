@@ -2,13 +2,74 @@ var productsArray=[];
 var cart=[];
 var users=[];
 var divListOfProducts=document.getElementById("divListOfProducts");
-
-function getUserDetail()
+function refreshUserDetails()
 {
     sessionStorage.loggedUsers=JSON.stringify(users);
+}
+function getUserDetail()
+{
+    if(!sessionStorage.loggedUsers)
+        {
+            sessionStorage.loggedUsers=JSON.stringify([]);
+        }
+    else
+        {
+            users=JSON.parse(sessionStorage.loggedUsers);            
+        }
     if(users.length==0)
         {
+            var prod=document.createElement("p");
+            prod.setAttribute("style","font-weight:bold;display:inline;");
+            prod.innerHTML="Products :";
+            navigation.appendChild(prod);
             
+            var login=document.createElement("a");
+            var textNode=document.createTextNode("Login");
+            login.appendChild(textNode);
+            login.setAttribute("href","login.html")
+            login.setAttribute("style","font-size:22px;text-decoration: none;");
+            navigation.appendChild(login);
+            
+            var signUp=document.createElement("a");
+            var textNode=document.createTextNode("SignUp");
+            signUp.appendChild(textNode);
+            signUp.setAttribute("href","SignUp.html")
+            signUp.setAttribute("style","margin-left:30px;font-size:22px;text-decoration: none;");
+            navigation.appendChild(signUp);
+            
+        }
+        else
+            {
+                
+            var greet=document.createElement("p");
+            greet.setAttribute("style","font-weight:bold;display:inline;");
+            greet.innerHTML="Welcome "+users[0].name+"!";
+            navigation.appendChild(greet);
+            
+                
+            var myCart=document.createElement("a");
+            var textNode=document.createTextNode(" My Cart");
+            myCart.appendChild(textNode);
+            myCart.setAttribute("href","cart.html")
+            myCart.setAttribute("class","fa fa-shopping-cart")
+            myCart.setAttribute("style","margin-left:200px;font-size:22px;text-decoration: none;");
+            navigation.appendChild(myCart);
+                
+            var logout=document.createElement("a");
+            var textNode=document.createTextNode("Logout");
+            logout.appendChild(textNode);
+            logout.setAttribute("href","login.html");
+            logout.setAttribute("style","margin-left:100px;font-size:22px;text-decoration: none;");
+            navigation.appendChild(logout); 
+            logout.addEventListener("click",function(event){
+                users=[];
+                refreshUserDetails();
+            });    
+            var prod=document.createElement("p");
+            prod.setAttribute("style","font-weight:bold;");
+            prod.innerHTML="Products :";
+            navigation.appendChild(prod);
+                
         }
 }
 function storeProducts()
@@ -46,7 +107,6 @@ function getStoredCartProducts()
         {
             cart=JSON.parse(localStorage.cartProducts);
         }
-    console.log(cart);
 }
 
 function checkValidation(value)
@@ -144,7 +204,6 @@ function addProductToDOM(productObj)
                                     cart.splice(index,1,obj);
                                     storeProducts();
                                     alert("Product added!");
-                                    console.log(cart); 
                                 }
                             else
                                 {
