@@ -2,16 +2,17 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-         body
+        body
         {
             font-family: 'Exo 2', sans-serif;
         }
         .main{
+            margin-top: 25px;
             margin-left: 50px;
         }
         a
         {
-            font-weight:bold;
+            font-weight: bold;
             margin-left:900px; 
             color:black;
             font-family: 'Exo 2', sans-serif;
@@ -20,7 +21,8 @@
         }
         a:hover{
             transition: 0.5s;
-            color:#f00;
+            color:grey;
+            
         }
         h3
         {
@@ -31,9 +33,7 @@
     </head>
     <body onload="getStoredProducts()">
         <div class="main">
-        <div><h3>Products : 
-            <a href="cart.html" class="fa fa-shopping-cart" style="font-size:22px;"> My Cart</a>
-            </h3>
+            <div style="font-size: 20px;"id="navigation">
             </div>
         <div id="divListOfProducts">
         </div>

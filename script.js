@@ -21,7 +21,6 @@ function getStoredProducts()
     else
         {
             productsArray=JSON.parse(localStorage.products);
-           // productId=productsArray.indexOf(productsArray[productsArray.length-1])+1;
             for(i=0;i<productsArray.length;i++)
                 {
                     addProductToDOM(productsArray[i]);
@@ -35,7 +34,7 @@ aAddNewProduct.addEventListener("click",function(event){
     if(flag==0)
     {
     flag=1;
-    addProductPanel(); 
+    addProductPanel();
     }
 });
 function hideAddNewProductLink()
@@ -141,19 +140,19 @@ function addProductToDOM(productObj)
         var product=document.createElement("p");
         product.innerHTML=str;
         divRow.appendChild(product);
-        
-        
+
+
         var editBtn=document.createElement("button");
         editBtn.innerHTML="Edit";
-        editBtn.setAttribute("style","margin-left: 10px;background-color: white;color: black;border: 2px solid #555555;");
+        editBtn.setAttribute("style","padding:4px 8px;margin-left: 10px;background-color: grey;color: black;border:none;");
         var deleteBtn=document.createElement("button");
         deleteBtn.innerHTML="Delete";
-        deleteBtn.setAttribute("style","margin-left: 30px;background-color: white;color: black;border: 2px solid #555555;")
+        deleteBtn.setAttribute("style","margin-left: 30px;background-color: white;color: black;border:none;")
         deleteBtn.addEventListener("click",function(event) {
             deleteListRows(divRow,divRow.id);
              console.log(productsArray);
         });
-        
+
         editBtn.addEventListener("click",function(event){
               if(flag==0)
              {
@@ -162,12 +161,12 @@ function addProductToDOM(productObj)
              }
         });
         divRow.appendChild(editBtn);
-        divRow.setAttribute("style","width:350px;padding:10px 25px;margin-top:20px;border:2px solid #555555;");
+        divRow.setAttribute("style","box-shadow: 0px 4px 8px #ccc;float:left;margin-left:25px;width:340px;padding:10px 20px;margin-top:40px;border:2px solid grey;");
         divRow.appendChild(deleteBtn);
         divListOfProducts.appendChild(divRow);
         console.log(divRow.id);
         console.log(productsArray);
-        
+
 }
 
 function replaceProductInDOM(productObj)
@@ -178,21 +177,21 @@ function replaceProductInDOM(productObj)
         var product=document.createElement("p");
         product.innerHTML=str;
         divRow.appendChild(product);
-        
+
         var editBtn=document.createElement("button");
         editBtn.innerHTML="Edit";
-        editBtn.setAttribute("style","margin-left: 10px;background-color: white;color: black;border: 2px solid #555555;");
-        
+        editBtn.setAttribute("style","padding:4px 8px;margin-left: 10px;background-color: grey;color: black;border:none;");
+
         var deleteBtn=document.createElement("button");
         deleteBtn.innerHTML="Delete";
-        deleteBtn.setAttribute("style","margin-left: 30px;background-color: white;color: black;border: 2px solid #555555;")
+        deleteBtn.setAttribute("style","margin-left: 30px;background-color: white;color: black;border:none;");
         divRow.appendChild(editBtn);
         divRow.appendChild(deleteBtn);
-        divRow.setAttribute("style","width:350px;padding:10px 25px;margin-top:20px;border:2px solid #555555;");
+        divRow.setAttribute("style","box-shadow: 0px 4px 8px #ccc;float:left;margin-left:25px;width:340px;padding:10px 20px;margin-top:40px;border:2px solid grey;");
         deleteBtn.addEventListener("click",function(event) {
         deleteListRows(divRow,divRow.id);
         });
-        
+
         editBtn.addEventListener("click",function(event){
             if(flag==0)
                 {
@@ -208,14 +207,14 @@ function addProductPanel()
 {
     hideAddNewProductLink();
     var divLabel=document.createElement("div");
-    
+
     var labelProduct=document.createElement("label");
     labelProduct.innerHTML="Add New Product";
     labelProduct.setAttribute("style","margin-left:50px");
     divLabel.appendChild(labelProduct);
     insertBlankLine(divLabel);
     insertBlankLine(divLabel);
-    
+
     var name=document.createElement("input");
     name.setAttribute("type","text");
     name.setAttribute("id","textName");
@@ -224,8 +223,8 @@ function addProductPanel()
     divLabel.appendChild(name);
     insertBlankLine(divLabel);
     insertBlankLine(divLabel);
-    
-    
+
+
     var description=document.createElement("textarea");
     description.setAttribute("id","textDescription");
     description.setAttribute("placeholder","description");
@@ -233,19 +232,19 @@ function addProductPanel()
     divLabel.appendChild(description);
     insertBlankLine(divLabel);
     insertBlankLine(divLabel);
-    
-    
+
+
     var price=document.createElement("input");
-    price.setAttribute("type","text");
+    price.setAttribute("type","number");
     price.setAttribute("id","textPrice");
     price.setAttribute("placeholder","price");
     price.setAttribute("style","width:250px");
     divLabel.appendChild(price);
     insertBlankLine(divLabel);
     insertBlankLine(divLabel);
-    
+
     var quantity=document.createElement("input");
-    quantity.setAttribute("type","text");
+    quantity.setAttribute("type","number");
     quantity.setAttribute("id","textQuantity");
     quantity.setAttribute("placeholder","quantity");
     quantity.setAttribute("style","width:250px");
@@ -253,27 +252,27 @@ function addProductPanel()
     divLabel.appendChild(quantity);
     insertBlankLine(divLabel);
     insertBlankLine(divLabel);
-    
+
     var addBtn=document.createElement("button");
     addBtn.innerHTML="Add Product";
     addBtn.setAttribute("id","addToList");
-    addBtn.setAttribute("style","margin-left: 35px;background-color: white;color: black;border: 2px solid #555555;");
+    addBtn.setAttribute("style","padding:4px 8px;margin-left: 35px;background-color: grey;color: black;border:none;");
     divLabel.appendChild(addBtn);
-    
+
     var cancelBtn=document.createElement("button");
     cancelBtn.innerHTML="Cancel";
     cancelBtn.setAttribute("id","cancel");
-    cancelBtn.setAttribute("style","margin-left: 10px;background-color: white;color: black;border: 2px solid #555555;");
+    cancelBtn.setAttribute("style","margin-left: 10px;background-color: white;color: black;border:none;");
     divLabel.appendChild(cancelBtn);
     insertBlankLine(divLabel);
     insertBlankLine(divLabel);
     divAddProduct.appendChild(divLabel);
-    
+
     cancelBtn.addEventListener("click",function(event){
         flag=0;
         hideProductPanel(divLabel);
     });
-    
+
     addBtn.addEventListener("click",function(event){
         if(checkValidation(textName.value,textDescription.value,textPrice.value,textQuantity.value))
             {
@@ -282,7 +281,7 @@ function addProductPanel()
                 hideProductPanel(divLabel);
            }
     });
-    
+
 }
 
 
@@ -297,7 +296,7 @@ function updateProductPanel(id)
     divLabel.appendChild(labelProduct);
     insertBlankLine(divLabel);
     insertBlankLine(divLabel);
-    
+
     var name=document.createElement("input");
     name.setAttribute("type","text");
     name.setAttribute("id","textName");
@@ -307,8 +306,8 @@ function updateProductPanel(id)
     divLabel.appendChild(name);
     insertBlankLine(divLabel);
     insertBlankLine(divLabel);
-    
-    
+
+
     var description=document.createElement("textarea");
     description.setAttribute("id","textDescription");
     description.setAttribute("placeholder","description");
@@ -317,10 +316,10 @@ function updateProductPanel(id)
     divLabel.appendChild(description);
     insertBlankLine(divLabel);
     insertBlankLine(divLabel);
-    
-    
+
+
     var price=document.createElement("input");
-    price.setAttribute("type","text");
+    price.setAttribute("type","number");
     price.setAttribute("id","textPrice");
     price.setAttribute("placeholder","price");
     price.setAttribute("style","width:250px");
@@ -328,9 +327,9 @@ function updateProductPanel(id)
     divLabel.appendChild(price);
     insertBlankLine(divLabel);
     insertBlankLine(divLabel);
-    
+
     var quantity=document.createElement("input");
-    quantity.setAttribute("type","text");
+    quantity.setAttribute("type","number");
     quantity.setAttribute("id","textQuantity");
     quantity.setAttribute("placeholder","quantity");
     quantity.setAttribute("style","width:250px");
@@ -338,27 +337,27 @@ function updateProductPanel(id)
     divLabel.appendChild(quantity);
     insertBlankLine(divLabel);
     insertBlankLine(divLabel);
-    
+
     var updateBtn=document.createElement("button");
     updateBtn.innerHTML="Update";
     updateBtn.setAttribute("id","updateToList");
-    updateBtn.setAttribute("style","margin-left: 35px;background-color: white;color: black;border: 2px solid #555555;");
+    updateBtn.setAttribute("style","padding:4px 8px;margin-left: 35px;background-color: grey;color: black;border:none;");
     divLabel.appendChild(updateBtn);
-    
+
     var cancelBtn=document.createElement("button");
     cancelBtn.innerHTML="Cancel";
     cancelBtn.setAttribute("id","cancel");
-     cancelBtn.setAttribute("style","margin-left: 10px;background-color: white;color: black;border: 2px solid #555555;");
+     cancelBtn.setAttribute("style","margin-left: 10px;background-color: white;color: black;border:none;");
     divLabel.appendChild(cancelBtn);
     insertBlankLine(divLabel);
     insertBlankLine(divLabel);
     divAddProduct.appendChild(divLabel);
-    
+
     cancelBtn.addEventListener("click",function(event){
         flag=0;
         hideProductPanel(divLabel);
     });
-    
+
     updateBtn.addEventListener("click",function(event){
         if(checkValidation(textName.value,textDescription.value,textPrice.value,textQuantity.value))
             {
@@ -375,5 +374,5 @@ function updateProductPanel(id)
                    hideProductPanel(divLabel);
             }
     });
-    
+
 }
