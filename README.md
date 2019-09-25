@@ -5,5 +5,5 @@ An e-commerce web-application using javascript.
  - Admin can add , delete & update products.
  - User Registration.
  - User can add products to their cart.
- - Data is saved in Local Storage of browser.
+ - Data is stored in Local Storage of browser.
  
