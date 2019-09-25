@@ -1,4 +1,4 @@
-# E-commerce-WebApp
+# Shopping-cart web-app (With Local Storage)
 
 An e-commerce web-application using javascript.
 ## Functionalities :
