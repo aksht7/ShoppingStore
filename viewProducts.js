@@ -19,57 +19,48 @@ function getUserDetails()
         }
     if(users.length==0)
         {
-            var prod=document.createElement("p");
-            prod.setAttribute("style","font-weight:bold;display:inline;");
-            prod.innerHTML="Products :";
-            navigation.appendChild(prod);
-            
-            var login=document.createElement("a");
-            var textNode=document.createTextNode("Login");
-            login.appendChild(textNode);
-            login.setAttribute("href","login.html")
-            login.setAttribute("style","font-size:22px;text-decoration: none;");
-            navigation.appendChild(login);
             
             var signUp=document.createElement("a");
             var textNode=document.createTextNode("SignUp");
             signUp.appendChild(textNode);
             signUp.setAttribute("href","SignUp.html")
-            signUp.setAttribute("style","margin-left:30px;font-size:22px;text-decoration: none;");
+            signUp.setAttribute("style","margin-right:100px;margin-left:30px;text-decoration: none;");
             navigation.appendChild(signUp);
+            var login=document.createElement("a");
+            var textNode=document.createTextNode("Login");
+            login.appendChild(textNode);
+            login.setAttribute("href","login.html")
+            login.setAttribute("style","margin-left:100px;text-decoration: none;");
+            navigation.appendChild(login);
             
         }
         else
             {
                 
-            var greet=document.createElement("p");
-            greet.setAttribute("style","font-weight:bold;display:inline;");
-            greet.innerHTML="Welcome "+users[0].name+"!";
-            navigation.appendChild(greet);
-            
+            var logout=document.createElement("a");
+            var textNode=document.createTextNode("Logout");
+            logout.appendChild(textNode);
+            logout.setAttribute("href","login.html");
+            logout.setAttribute("style","margin-right:100px;margin-left:100px;font-size:22px;text-decoration: none;");
+            navigation.appendChild(logout); 
                 
             var myCart=document.createElement("a");
             var textNode=document.createTextNode(" My Cart");
             myCart.appendChild(textNode);
             myCart.setAttribute("href","cart.html")
             myCart.setAttribute("class","fa fa-shopping-cart")
-            myCart.setAttribute("style","margin-left:600px;font-size:22px;text-decoration: none;");
+            myCart.setAttribute("style","margin-left:620px;font-size:22px;text-decoration: none;");
             navigation.appendChild(myCart);
                 
-            var logout=document.createElement("a");
-            var textNode=document.createTextNode("Logout");
-            logout.appendChild(textNode);
-            logout.setAttribute("href","login.html");
-            logout.setAttribute("style","margin-left:100px;font-size:22px;text-decoration: none;");
-            navigation.appendChild(logout); 
+            var greet=document.createElement("p");
+            greet.setAttribute("style","margin-left:15px;font-weight:bold;display:inline;");
+            greet.innerHTML="Welcome "+users[0].name+"!";
+            navigation.appendChild(greet);
+                
             logout.addEventListener("click",function(event){
                 users=[];
                 refreshUserDetails();
             });
-            var prod=document.createElement("p");
-            prod.setAttribute("style","font-weight:bold;");
-            prod.innerHTML="Products :";
-            navigation.appendChild(prod);
                 
         }
 }

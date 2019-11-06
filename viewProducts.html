@@ -6,9 +6,12 @@
         {
             font-family: 'Exo 2', sans-serif;
         }
-        .main{
-            margin-top: 25px;
-            margin-left: 50px;
+         .logo-image{
+             margin-top: 10px;
+             margin-left: 40px;
+             margin-bottom: 15px;
+             width: 46px;
+             overflow: hidden;
         }
         a
         {
@@ -29,11 +32,28 @@
             margin-top: 30px;
             color: #262626;
         }
+        #navigation{
+            overflow: hidden;
+            box-shadow: 0px 4px 8px #ccc;
+        }
+         #navigation p{
+             margin-left: 12px;
+            float: right;
+            text-align: center;
+            
+        }
+        #navigation a{
+            margin-top:15px; 
+            float: right;
+            text-align: center;
+            padding: 5px 10px;
+        }
     </style>
     </head>
     <body onload="getStoredProducts()">
         <div class="main">
             <div style="font-size: 20px;"id="navigation">
+            <img class="logo-image"src="images/shop.png">
             </div>
         <div id="divListOfProducts">
         </div>

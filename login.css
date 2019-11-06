@@ -5,13 +5,22 @@ body{
     padding: 0;
     margin: 0;
 }
+.pic{
+    margin-top: 140px;
+    margin-left: 120px;
+    width:620px;
+    height: 415px;
+    background-image: url("bags.jpg");
+    float:left;
+}
 #main
 {
+    float:left;
     box-shadow: 0px 4px 8px #ccc;
     border: 2px solid grey;
     position: absolute;
     top:25%;
-    left:38%;
+    left:68%;
     font-size: 20px;
     padding: 20px 45px;
 }
