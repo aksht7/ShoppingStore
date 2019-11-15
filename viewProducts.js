@@ -21,27 +21,33 @@ function getUserDetails()
         {
             
             var signUp=document.createElement("a");
-            var textNode=document.createTextNode("SignUp");
+            var textNode=document.createTextNode("SIGN UP");
             signUp.appendChild(textNode);
             signUp.setAttribute("href","SignUp.html")
-            signUp.setAttribute("style","margin-right:100px;margin-left:30px;text-decoration: none;");
+            signUp.setAttribute("style","font-family: 'Exo 2', sans-serif;margin-right:100px;margin-left:30px;text-decoration: none;");
             navigation.appendChild(signUp);
             var login=document.createElement("a");
-            var textNode=document.createTextNode("Login");
+            var textNode=document.createTextNode("LOGIN");
             login.appendChild(textNode);
             login.setAttribute("href","login.html")
-            login.setAttribute("style","margin-left:100px;text-decoration: none;");
+            login.setAttribute("style","font-family: 'Exo 2', sans-serif;margin-left:100px;text-decoration: none;");
             navigation.appendChild(login);
+            
+            var search=document.createElement("input");
+            search.setAttribute("tyoe","text");
+            search.setAttribute("placeholder"," Search for products, brands and more");
+            search.setAttribute("style","border:none;outline:none;background:#f1f1f1;border-radius:20px;width:25%;height:5%;padding: 17px;font-family: 'Exo 2', sans-serif;float:right;margin-left:100px;margin-top:15px;text-decoration: none;");
+            navigation.appendChild(search);
             
         }
         else
             {
                 
             var logout=document.createElement("a");
-            var textNode=document.createTextNode("Logout");
+            var textNode=document.createTextNode("LOGOUT");
             logout.appendChild(textNode);
             logout.setAttribute("href","login.html");
-            logout.setAttribute("style","margin-right:100px;margin-left:100px;font-size:22px;text-decoration: none;");
+            logout.setAttribute("style","font-family: 'Exo 2', sans-serif;margin-right:100px;margin-left:30px;font-size:20px;text-decoration: none;");
             navigation.appendChild(logout); 
                 
             var myCart=document.createElement("a");
@@ -49,12 +55,18 @@ function getUserDetails()
             myCart.appendChild(textNode);
             myCart.setAttribute("href","cart.html")
             myCart.setAttribute("class","fa fa-shopping-cart")
-            myCart.setAttribute("style","margin-left:620px;font-size:22px;text-decoration: none;");
+            myCart.setAttribute("style","font-size:20px;margin-left:100px;text-decoration: none;");
             navigation.appendChild(myCart);
                 
+            var search=document.createElement("input");
+            search.setAttribute("tyoe","text");
+            search.setAttribute("placeholder"," Search for products, brands and more");
+            search.setAttribute("style","float:right;border:none;outline:none;background:#f1f1f1;border-radius:20px;width:25%;height:5%;padding: 17px;font-family: 'Exo 2', sans-serif;margin-left:100px;margin-top:15px;text-decoration: none;");
+            navigation.appendChild(search);
+                
             var greet=document.createElement("p");
-            greet.setAttribute("style","margin-left:15px;font-weight:bold;display:inline;");
-            greet.innerHTML="Welcome "+users[0].name+"!";
+            greet.setAttribute("style","margin-right:200px;font-weight:bold;display:inline;");
+            greet.innerHTML="Hey "+users[0].name+"!";
             navigation.appendChild(greet);
                 
             logout.addEventListener("click",function(event){
@@ -152,7 +164,6 @@ function checkCart(id)
           }
    return false;
 }
-
 function checkQuantityAvailability(id,value)
 {
     console.log(value);
@@ -171,16 +182,27 @@ function checkQuantityAvailability(id,value)
 
 function addProductToDOM(productObj)
 {
-    var str="Product name : "+productObj.name+"<br>Description : "+productObj.description+"<br>Price : Rs "+productObj.price+"<br>";
+    var str="<h4><b>"+productObj.name+"</b></h4>Description : "+productObj.description+"<br>Price : Rs "+productObj.price+"<br>";
         var divRow=document.createElement("div");
+         divRow.className+="productDiv";
+        var img = document.createElement('img');
+        img.setAttribute("style","margin-left:17%;");
+        var path=productObj.img;
+        var file =path.split("\\");
+        var fileName = file[file.length-1];
+        console.log(fileName);
+        img.src="images/"+fileName;
+        divRow.appendChild(img);
         divRow.setAttribute("id",productObj.id);
+        divRow.setAttribute("style","position:relative,backface-visibility: hidden;");
         var product=document.createElement("p");
         product.innerHTML=str;
+        product.setAttribute("style","font-size:15px;");
         divRow.appendChild(product);
         if(users.length==0)
             {
                 var quantity=document.createElement("input");
-                quantity.setAttribute("placeholder"," You need to Login First!!!");
+                quantity.setAttribute("placeholder"," Please Login!!!");
                 quantity.setAttribute("type","number");
                 quantity.setAttribute("disabled","true");
                 quantity.setAttribute("style","outline:none;border:none;border-bottom:1px solid black;background:none;");
@@ -217,6 +239,7 @@ function addProductToDOM(productObj)
                                     obj.name=productObj.name;
                                     obj.quantity=quantity.value;
                                     obj.price=productObj.price;
+                                    obj.img=productObj.img;
                                     obj.total=Number(productObj.price)*Number(quantity.value);
                                     cart.splice(index,1,obj);
                                     storeProducts();
@@ -231,6 +254,7 @@ function addProductToDOM(productObj)
                                     obj.name=productObj.name;
                                     obj.quantity=quantity.value;
                                     obj.price=productObj.price;
+                                    obj.img=productObj.img;
                                     obj.total=Number(productObj.price)*Number(quantity.value);
                                     cart.push(obj);
                                     storeProducts();
@@ -245,7 +269,7 @@ function addProductToDOM(productObj)
         });
         divRow.appendChild(quantity);
         divRow.appendChild(addToCart);
-        divRow.setAttribute("style","box-shadow: 0px 4px 8px #ccc;float:left;margin-left:25px;width:340px;padding:10px 20px;margin-top:40px;border:2px solid grey;");
+        divRow.setAttribute("style","overflow:hidden;height:60%;width:100%;float:left;margin-left:25px;width:340px;padding:10px 20px;margin-top:40px;");
         divListOfProducts.appendChild(divRow);
         console.log(divRow.id);
         console.log(productsArray);

@@ -118,6 +118,7 @@ function addProductToArray()
     productObj.description=document.getElementById("textDescription").value;
     productObj.price=document.getElementById("textPrice").value;
     productObj.quantity=document.getElementById("textQuantity").value;
+    productObj.img=document.getElementById("img").value;
     productsArray.push(productObj);
     storeProducts(productObj);
     addProductToDOM(productObj);
@@ -136,12 +137,19 @@ function addProductToDOM(productObj)
 {
     var str="Product name : "+productObj.name+"<br>Description : "+productObj.description+"<br>Price : Rs "+productObj.price+"<br>Quantity : "+productObj.quantity+"<br>";
         var divRow=document.createElement("div");
+        divRow.className+="productDiv";
+        var img = document.createElement('img');
+        img.setAttribute("style","margin-left:17%;");
+        var path=productObj.img;
+        var file =path.split("\\");
+        var fileName = file[file.length-1];
+        console.log(fileName);
+        img.src="images/"+fileName;
+        divRow.appendChild(img);
         divRow.setAttribute("id",productObj.id);
         var product=document.createElement("p");
         product.innerHTML=str;
         divRow.appendChild(product);
-
-
         var editBtn=document.createElement("button");
         editBtn.innerHTML="Edit";
         editBtn.setAttribute("style","padding:4px 8px;margin-left: 10px;background-color: grey;color: black;border:none;");
@@ -161,7 +169,7 @@ function addProductToDOM(productObj)
              }
         });
         divRow.appendChild(editBtn);
-        divRow.setAttribute("style","box-shadow: 0px 4px 8px #ccc;float:left;margin-left:25px;width:340px;padding:10px 20px;margin-top:40px;border:2px solid grey;");
+        divRow.setAttribute("style","overflow:hidden;height:60%;width:100%;float:left;margin-left:25px;width:340px;padding:10px 20px;margin-top:40px;");
         divRow.appendChild(deleteBtn);
         divListOfProducts.appendChild(divRow);
         console.log(divRow.id);
@@ -173,6 +181,15 @@ function replaceProductInDOM(productObj)
 {
     var str="Product name : "+productObj.name+"<br>Description : "+productObj.description+"<br>Price : Rs "+productObj.price+"<br>Quantity : "+productObj.quantity+"<br>";
         var divRow=document.createElement("div");
+    divRow.className+="productDiv";
+        var img = document.createElement('img');
+        img.setAttribute("style","margin-left:17%;");
+        var path=productObj.img;
+        var file =path.split("\\");
+        var fileName = file[file.length-1];
+        console.log(fileName);
+        img.src="images/"+fileName;
+        divRow.appendChild(img);
         divRow.setAttribute("id",productObj.id);
         var product=document.createElement("p");
         product.innerHTML=str;
@@ -187,7 +204,7 @@ function replaceProductInDOM(productObj)
         deleteBtn.setAttribute("style","margin-left: 30px;background-color: white;color: black;border:none;");
         divRow.appendChild(editBtn);
         divRow.appendChild(deleteBtn);
-        divRow.setAttribute("style","box-shadow: 0px 4px 8px #ccc;float:left;margin-left:25px;width:340px;padding:10px 20px;margin-top:40px;border:2px solid grey;");
+        divRow.setAttribute("style","overflow:hidden;height:55%;width:100%;box-shadow: 0px 4px 8px #ccc;float:left;margin-left:25px;width:340px;padding:10px 20px;margin-top:40px;border:2px solid grey;");
         deleteBtn.addEventListener("click",function(event) {
         deleteListRows(divRow,divRow.id);
         });
@@ -252,7 +269,14 @@ function addProductPanel()
     divLabel.appendChild(quantity);
     insertBlankLine(divLabel);
     insertBlankLine(divLabel);
-
+    
+    var img=document.createElement("input");
+    img.setAttribute("type","file");
+    img.setAttribute("id","img");
+    divLabel.appendChild(img);
+    insertBlankLine(divLabel);
+    insertBlankLine(divLabel);
+    
     var addBtn=document.createElement("button");
     addBtn.innerHTML="Add Product";
     addBtn.setAttribute("id","addToList");
@@ -273,8 +297,7 @@ function addProductPanel()
         hideProductPanel(divLabel);
     });
 
-    addBtn.addEventListener("click",function(event){
-        if(checkValidation(textName.value,textDescription.value,textPrice.value,textQuantity.value))
+    addBtn.addEventListener("click",function(event){ if(checkValidation(textName.value,textDescription.value,textPrice.value,textQuantity.value))
             {
                 flag=0;
                 addProductToArray(divLabel);
@@ -337,6 +360,13 @@ function updateProductPanel(id)
     divLabel.appendChild(quantity);
     insertBlankLine(divLabel);
     insertBlankLine(divLabel);
+    
+    var img=document.createElement("input");
+    img.setAttribute("type","file");
+    img.setAttribute("id","img");
+    divLabel.appendChild(img);
+    insertBlankLine(divLabel);
+    insertBlankLine(divLabel);
 
     var updateBtn=document.createElement("button");
     updateBtn.innerHTML="Update";
@@ -359,7 +389,7 @@ function updateProductPanel(id)
     });
 
     updateBtn.addEventListener("click",function(event){
-        if(checkValidation(textName.value,textDescription.value,textPrice.value,textQuantity.value))
+       if(checkValidation(textName.value,textDescription.value,textPrice.value,textQuantity.value))
             {
                    flag=0;
                    var productObj=new Object();
@@ -368,6 +398,7 @@ function updateProductPanel(id)
                    productObj.description=textDescription.value;
                    productObj.price=textPrice.value;
                    productObj.quantity=textQuantity.value;
+                   productObj.img=img.value;
                    productsArray.splice(index,1,productObj);
                    storeProducts();
                    replaceProductInDOM(productObj);

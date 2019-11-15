@@ -84,6 +84,16 @@ function addProductToDOM(productObj)
     var str="Product name : "+productObj.name+"<br>Price : Rs "+productObj.price+"<br>Quantity : "+productObj.quantity+"<br>Total : Rs "+Number(productObj.price)*Number(productObj.quantity);
     var index=getAllProductIndex(productObj.id);
     var divRow=document.createElement("div");
+     divRow.className+="productDiv";
+    var img = document.createElement('img');
+        img.setAttribute("style","margin-left:17%;");
+        var path=productObj.img;
+        var file =path.split("\\");
+        var fileName = file[file.length-1];
+        console.log(fileName);
+        img.src="images/"+fileName;
+        divRow.appendChild(img);
+    
     divRow.setAttribute("id",productObj.id);
     var product=document.createElement("p");
     product.innerHTML=str;
@@ -100,7 +110,7 @@ function addProductToDOM(productObj)
     deleteBtn.addEventListener("click",function(event) {
         deleteProduct(divRow.id,divRow);
     });
-    divRow.setAttribute("style","box-shadow: 0px 4px 8px #ccc;float:left;margin-left:25px;width:340px;padding:10px 20px;margin-top:20px;border:2px solid grey;");
+    divRow.setAttribute("style","float:left;margin-left:25px;width:340px;padding:10px 20px;margin-top:20px;");
     divListOfProducts.appendChild(divRow);
     totalPrice+=Number(productObj.price)*Number(productObj.quantity);
 
