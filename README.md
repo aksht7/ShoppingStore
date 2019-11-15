@@ -9,7 +9,7 @@ An e-commerce web-application using javascript.
  
 ## OVERVIEW :
 
-![p1](https://user-images.githubusercontent.com/37541022/68918155-14df8000-0793-11ea-90ec-b21563983fbf.PNG)
+  ![p1](https://user-images.githubusercontent.com/37541022/68918155-14df8000-0793-11ea-90ec-b21563983fbf.PNG)
 ![p2](https://user-images.githubusercontent.com/37541022/68918345-ca123800-0793-11ea-9a81-6ac555899744.PNG)
 
 
